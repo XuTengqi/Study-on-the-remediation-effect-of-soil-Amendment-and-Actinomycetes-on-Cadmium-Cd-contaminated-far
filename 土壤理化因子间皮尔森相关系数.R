@@ -1,0 +1,13 @@
+library(ade4)
+library(vegan)
+library(cluster)
+library(gclus)
+env<-read.csv("F:/env.csv",row.names=1)
+env1<-env[,1:12]
+env.pearson<-cor(env1)
+round(env.pearson,3)
+env.o<-order.single(env.pearson)
+source("F:/panelutils.R")
+op<-par(mfrow=c(1,1),pty="s")
+pairs(env[,env.o],lower.panel=panel.smooth,upper.panel=panel.cor,diag.panel=panel.hist,main="Pearson Correlation Matrix")
+par(op)
